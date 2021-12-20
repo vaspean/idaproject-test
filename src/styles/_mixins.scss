@@ -1,0 +1,6 @@
+@import '_variables.scss';
+
+@mixin border-default {
+  background-color: $main-color-white;
+  border-radius: 4px;
+}
