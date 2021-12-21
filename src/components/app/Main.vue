@@ -1,34 +1,30 @@
 <template>
-  <div id="app">
-    <div class="container">
-      <Header/>
-      <Main/>
-    </div>
-  </div>
+  <main>
+    <Form/>
+    <Products/>
+  </main>
 </template>
 
 <script>
-import Header from '@/components/app/Header.vue';
-import Main from '@/components/app/Main.vue';
+import Form from '@/components/Form.vue';
+import Products from '@/components/Products.vue';
 
 export default {
-  name: 'App',
+  name: 'Main',
   data() {
     return {
       p: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
     };
   },
   components: {
-    Header, Main,
+    Form, Products,
   },
 };
 </script>
 
 <style lang="scss" scoped>
-
-.container {
-  max-width: $container-width;
-  margin: 0 auto;
+main {
+  display: flex;
+  justify-content: space-between;
 }
-
 </style>
