@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <div class="container">
-
       <header>
         <h1>Добавление товара</h1>
         <button class="select">
@@ -33,10 +32,34 @@
         <div class="products">
           <ul class="products__list">
             <li class="products__item">
-              <!-- <div class="products__img"></div> -->
-              <p class="products__name">Наименование товара</p>
-              <p class="products__description">{{p}}</p>
-              <span class="products__price">10 000 руб.</span>
+              <button class="products__item__btn_delete"></button>
+              <p class="products__item__name">Наименование товара</p>
+              <p class="products__item__description">{{p}}</p>
+              <span class="products__item__price">10 000 руб.</span>
+            </li>
+            <li class="products__item">
+              <button class="products__item__btn_delete"></button>
+              <p class="products__item__name">Наименование товара</p>
+              <p class="products__item__description">{{p}}</p>
+              <span class="products__item__price">10 000 руб.</span>
+            </li>
+            <li class="products__item">
+              <button class="products__item__btn_delete"></button>
+              <p class="products__item__name">Наименование товара</p>
+              <p class="products__item__description">{{p}}</p>
+              <span class="products__item__price">10 000 руб.</span>
+            </li>
+            <li class="products__item">
+              <button class="products__item__btn_delete"></button>
+              <p class="products__item__name">Наименование товара</p>
+              <p class="products__item__description">{{p}}</p>
+              <span class="products__item__price">10 000 руб.</span>
+            </li>
+            <li class="products__item">
+              <button class="products__item__btn_delete"></button>
+              <p class="products__item__name">Наименование товара</p>
+              <p class="products__item__description">{{p}}</p>
+              <span class="products__item__price">10 000 руб.</span>
             </li>
           </ul>
         </div>
@@ -46,7 +69,6 @@
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue';
 
 export default {
   name: 'App',
@@ -61,6 +83,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
 
 header {
   margin-bottom: 16px;
@@ -94,6 +121,7 @@ main {
 .form {
   @include border-default;
   width: 24%;
+  height: 440px;
   padding: 24px;
   display: flex;
   flex-wrap: wrap;
@@ -142,37 +170,67 @@ main {
 
 .products {
   width: 74.5%;
+  // padding-right: -14px;
 
   &__list {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 332px);
+    grid-gap: 15px;
+    // grid-template-columns: fit-content(30%);
+    // display: flex;
+    // flex-wrap: wrap;
     // justify-content: space-between;
   }
 
   &__item {
     @include border-default;
+    position: relative;
     max-width: 332px;
+    // margin-bottom: 16px;
+    // margin-right: 14px;
     padding: 195px 16px 24px;
     background-image: url("assets/product_image.png");
     background-repeat: no-repeat;
     box-shadow: $box-shadow-huge;
+
+    &__btn_delete {
+      position: absolute;
+      top: -2%;
+      left: 92%;
+      width: 32px;
+      height: 32px;
+      box-shadow: $box-shadow-tiny;
+      border: none;
+      background-color: $main-color-red;
+      background-image: url("assets/trashcan.svg");
+      background-repeat: no-repeat;
+      background-size: 50%;
+      background-position: 52% 8px;
+      border-radius: 10px;
+      // height: 30px;
+    }
+
+    // &:not(:nth-child(3n)) {
+    // margin-right: 14px;
+    // }
+
+    &__name {
+      margin-bottom: 16px;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    &__description {
+      margin-bottom: 32px;
+      font-size: 16px;
+    }
+
+    &__price {
+      font-size: 24px;
+      font-weight: 600;
+    }
   }
 
-  &__name {
-    margin-bottom: 16px;
-    font-size: 20px;
-    font-weight: 600;
-  }
-
-  &__description {
-    margin-bottom: 32px;
-    font-size: 16px;
-  }
-
-  &__price {
-    font-size: 24px;
-    font-weight: 600;
-  }
 }
 
 </style>
