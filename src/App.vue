@@ -11,7 +11,7 @@
       <main>
         <form action="" class="form">
           <label class="form__name" for="form__name_input">
-            Наименование товара
+            <span>Наименование товара</span>
           </label>
           <input type="text" id="form__name_input" placeholder="Введите наименование товара">
           <label class="form__description" for="form__description_input">
@@ -20,17 +20,101 @@
           <textarea rows="10" id="form__description_input" placeholder="Введите описание товара">
           </textarea>
           <label class="form__link" for="form__link_input">
-            Ссылка на изображение товара
+            <span>Ссылка на изображение товара</span>
           </label>
           <input type="text" id="form__link_input" placeholder="Введите ссылку">
           <label class="form__price" for="form__price_input">
-            Цена товара
+            <span>Цена товара</span>
           </label>
           <input type="text" id="form__price_input" placeholder="Введите цену">
           <button class="form__btn_submit">Добавить товар</button>
         </form>
         <div class="products">
           <ul class="products__list">
+            <li class="products__item">
+              <button class="products__item__btn_delete"></button>
+              <p class="products__item__name">Наименование товара</p>
+              <p class="products__item__description">{{p}}</p>
+              <span class="products__item__price">10 000 руб.</span>
+            </li>
+            <li class="products__item">
+              <button class="products__item__btn_delete"></button>
+              <p class="products__item__name">Наименование товара</p>
+              <p class="products__item__description">{{p}}</p>
+              <span class="products__item__price">10 000 руб.</span>
+            </li>
+            <li class="products__item">
+              <button class="products__item__btn_delete"></button>
+              <p class="products__item__name">Наименование товара</p>
+              <p class="products__item__description">{{p}}</p>
+              <span class="products__item__price">10 000 руб.</span>
+            </li>
+            <li class="products__item">
+              <button class="products__item__btn_delete"></button>
+              <p class="products__item__name">Наименование товара</p>
+              <p class="products__item__description">{{p}}</p>
+              <span class="products__item__price">10 000 руб.</span>
+            </li>
+            <li class="products__item">
+              <button class="products__item__btn_delete"></button>
+              <p class="products__item__name">Наименование товара</p>
+              <p class="products__item__description">{{p}}</p>
+              <span class="products__item__price">10 000 руб.</span>
+            </li>
+            <li class="products__item">
+              <button class="products__item__btn_delete"></button>
+              <p class="products__item__name">Наименование товара</p>
+              <p class="products__item__description">{{p}}</p>
+              <span class="products__item__price">10 000 руб.</span>
+            </li>
+            <li class="products__item">
+              <button class="products__item__btn_delete"></button>
+              <p class="products__item__name">Наименование товара</p>
+              <p class="products__item__description">{{p}}</p>
+              <span class="products__item__price">10 000 руб.</span>
+            </li>
+            <li class="products__item">
+              <button class="products__item__btn_delete"></button>
+              <p class="products__item__name">Наименование товара</p>
+              <p class="products__item__description">{{p}}</p>
+              <span class="products__item__price">10 000 руб.</span>
+            </li>
+            <li class="products__item">
+              <button class="products__item__btn_delete"></button>
+              <p class="products__item__name">Наименование товара</p>
+              <p class="products__item__description">{{p}}</p>
+              <span class="products__item__price">10 000 руб.</span>
+            </li>
+            <li class="products__item">
+              <button class="products__item__btn_delete"></button>
+              <p class="products__item__name">Наименование товара</p>
+              <p class="products__item__description">{{p}}</p>
+              <span class="products__item__price">10 000 руб.</span>
+            </li>
+            <li class="products__item">
+              <button class="products__item__btn_delete"></button>
+              <p class="products__item__name">Наименование товара</p>
+              <p class="products__item__description">{{p}}</p>
+              <span class="products__item__price">10 000 руб.</span>
+            </li>
+            <li class="products__item">
+              <button class="products__item__btn_delete"></button>
+              <p class="products__item__name">Наименование товара</p>
+              <p class="products__item__description">{{p}}</p>
+              <span class="products__item__price">10 000 руб.</span>
+            </li>
+            <li class="products__item">
+              <button class="products__item__btn_delete"></button>
+              <p class="products__item__name">Наименование товара</p>
+              <p class="products__item__description">{{p}}</p>
+              <span class="products__item__price">10 000 руб.</span>
+            </li>
+            <li class="products__item">
+              <button class="products__item__btn_delete"></button>
+              <p class="products__item__name">Наименование товара</p>
+              <p class="products__item__description">{{p}}</p>
+              <span class="products__item__price">10 000 руб.</span>
+            </li>
             <li class="products__item">
               <button class="products__item__btn_delete"></button>
               <p class="products__item__name">Наименование товара</p>
@@ -120,6 +204,8 @@ main {
 
 .form {
   @include border-default;
+  position: sticky;
+  top: 24px;
   width: 24%;
   height: 440px;
   padding: 24px;
@@ -133,6 +219,21 @@ main {
     line-height: 12px;
     color: $forms-text-color;
   }
+
+  // .form__name, .form__link, .form__price {
+  //   background-image: url("assets/red_dot.svg");
+  //   background-repeat: no-repeat;
+  // }
+  .form__name span, .form__link span, .form__price span{
+    padding-right: 5px;
+    background-image: url("assets/red_dot.svg");
+    background-repeat: no-repeat;
+    background-position: 100% 0%;
+  }
+
+  // .form__name {
+  //   background-position: 50% 50%;
+  // }
 
   #form__description_input {
     height: 108px;
@@ -170,24 +271,17 @@ main {
 
 .products {
   width: 74.5%;
-  // padding-right: -14px;
 
   &__list {
     display: grid;
     grid-template-columns: repeat(3, 332px);
     grid-gap: 15px;
-    // grid-template-columns: fit-content(30%);
-    // display: flex;
-    // flex-wrap: wrap;
-    // justify-content: space-between;
   }
 
   &__item {
     @include border-default;
     position: relative;
     max-width: 332px;
-    // margin-bottom: 16px;
-    // margin-right: 14px;
     padding: 195px 16px 24px;
     background-image: url("assets/product_image.png");
     background-repeat: no-repeat;
@@ -207,12 +301,7 @@ main {
       background-size: 50%;
       background-position: 52% 8px;
       border-radius: 10px;
-      // height: 30px;
     }
-
-    // &:not(:nth-child(3n)) {
-    // margin-right: 14px;
-    // }
 
     &__name {
       margin-bottom: 16px;
