@@ -5,11 +5,11 @@ body {
   padding: 32px 32px 0;
   margin: 0;
   background-color: transparentize($body-background-color, 0.8);
-  font-family: "Source Sans Pro", sans-serif !important;
   color: $main-text-color;
 }
 
-button, select {
+* {
+  box-sizing: border-box;
   font-family: "Source Sans Pro", sans-serif !important;
 }
 
