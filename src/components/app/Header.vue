@@ -37,6 +37,7 @@ h1 {
   background-position: 87% 50%;
   box-shadow: $box-shadow-tiny;
   font-size: 12px;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 570px) {

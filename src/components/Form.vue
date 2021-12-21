@@ -1,5 +1,5 @@
 <template>
-  <form action="" class="form">
+  <form @submit.prevent="" action="" class="form">
     <label class="form__name" for="form__name_input">
       <span>Наименование товара</span>
     </label>
@@ -69,6 +69,14 @@ export default {
     cursor: pointer;
   }
 
+  &__btn_submit:hover {
+    opacity: 0.8;
+  }
+
+  &__btn_submit:active {
+    transform: scale(0.95);
+  }
+
   .btn_disabled {
     background-color: #EEEEEE;
     color: $text-color-gray;
@@ -81,9 +89,12 @@ export default {
     margin-bottom: 16px;
     padding: 0 16px;
     box-shadow: $box-shadow-tiny;
-    color: $text-color-gray;
     font-size: 12px;
     line-height: 15px;
+  }
+
+  input::placeholder, textarea::placeholder {
+    color: $text-color-gray;
   }
 
   textarea {

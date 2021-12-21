@@ -30,8 +30,18 @@ export default {
     background-position: 50% 0%;
     background-repeat: no-repeat;
     box-shadow: $box-shadow-huge;
+    cursor: pointer;
+
+    // &:hover {
+    //   box-shadow: 0px 40px 60px rgba(0, 0, 0, 0.1), 0px 12px 20px rgba(0, 0, 0, 0.1);
+    // }
+
+    &:hover button {
+      display: block;
+    }
 
     &__btn_delete {
+      display: none;
       position: absolute;
       top: -2%;
       left: 92%;
@@ -42,6 +52,11 @@ export default {
       background: no-repeat 52% 8px/50% url("../assets/trashcan.svg");
       background-color: $main-color-red;
       border-radius: 10px;
+      cursor: pointer;
+    }
+
+    &__btn_delete:active {
+    transform: scale(0.9);
     }
 
     &__name {
@@ -59,7 +74,6 @@ export default {
       font-size: 24px;
       font-weight: 600;
     }
-
   }
 }
 
