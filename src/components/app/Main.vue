@@ -27,4 +27,10 @@ main {
   display: flex;
   justify-content: space-between;
 }
+
+@media screen and (max-width: 900px) {
+  main {
+    flex-wrap: wrap;
+  }
+}
 </style>

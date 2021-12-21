@@ -29,6 +29,7 @@ h1 {
 
 .select {
   @include border-default;
+  height: 36px;
   color: $text-color-gray;
   padding: 0 28px 0 15px;
   background-image: url("../../assets/select_arrow.svg");
@@ -36,5 +37,16 @@ h1 {
   background-position: 87% 50%;
   box-shadow: $box-shadow-tiny;
   font-size: 12px;
+}
+
+@media screen and (max-width: 570px) {
+  header {
+    flex-direction: column;
+
+    .select {
+      margin: 10px 0;
+      background-position: 95% 53%;
+    }
+  }
 }
 </style>

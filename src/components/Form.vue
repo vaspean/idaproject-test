@@ -32,7 +32,8 @@ export default {
   @include border-default;
   position: sticky;
   top: 24px;
-  width: 24%;
+  // width: 24%;
+  width: 332px;
   height: 440px;
   padding: 24px;
   display: flex;
@@ -62,9 +63,15 @@ export default {
     height: 36px;
     margin-top: 10px;
     border: none;
+    background-color: #7BAE73;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .btn_disabled {
     background-color: #EEEEEE;
     color: $text-color-gray;
-    border-radius: 10px
   }
 
   input, textarea {
@@ -86,4 +93,28 @@ export default {
 
   box-shadow: $box-shadow-huge;
 }
+
+@media screen and (max-width: 1080px) {
+  .form {
+    width: 33%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .form {
+    position: static;
+    width: 52%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .form {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+// @media screen and (max-width: 600px) {
+//   form { background-color: #fc0; }
+// }
 </style>

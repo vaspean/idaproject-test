@@ -27,6 +27,7 @@ export default {
     max-width: 332px;
     padding: 195px 16px 24px;
     background-image: url("../assets/product_image.png");
+    background-position: 50% 0%;
     background-repeat: no-repeat;
     box-shadow: $box-shadow-huge;
 
@@ -60,6 +61,33 @@ export default {
     }
 
   }
+}
 
+@media screen and (max-width: 768px) {
+  .products {
+    &__item {
+      &__name {
+        margin-bottom: 8px;
+        font-size: 16px;
+      }
+
+      &__description {
+        margin-bottom: 16px;
+        font-size: 12px;
+      }
+
+      &__price {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .products {
+    &__item {
+      margin: 0 auto;
+    }
+  }
 }
 </style>
