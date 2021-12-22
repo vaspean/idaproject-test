@@ -39,7 +39,8 @@
       "parser": "babel-eslint"
     },
     "rules": {
-      "linebreak-style": ["error", "unix"]
+      "linebreak-style": ["error", "unix"],
+      "max-len": ["error", { "code": 200 }]
     }
   },
   "browserslist": [

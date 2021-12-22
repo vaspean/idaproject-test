@@ -1,22 +1,15 @@
 <template>
   <div class="products">
     <ul class="products__list">
-      <ProductItem/>
-      <ProductItem/>
-      <ProductItem/>
-      <ProductItem/>
-      <ProductItem/>
-      <ProductItem/>
-      <ProductItem/>
-      <ProductItem/>
-      <ProductItem/>
-      <ProductItem/>
-      <ProductItem/>
-      <ProductItem/>
-      <ProductItem/>
-      <ProductItem/>
-      <ProductItem/>
-      <ProductItem/>
+      <ProductItem
+        v-for="(product, index) in products"
+        :key="index"
+        :name="product.name"
+        :description="product.description"
+        :price="product.price"
+        :imgLink="product.imgLink"
+        :imgLocation="product.imgLocation"
+      />
     </ul>
   </div>
 </template>
@@ -28,6 +21,7 @@ export default {
   name: 'Products',
   data() {
     return {
+      products: this.$store.state.products,
     };
   },
   components: {
@@ -42,7 +36,6 @@ export default {
 
   &__list {
     display: grid;
-    // grid-template-columns: repeat(3, 332px);
     grid-template-columns: repeat(3, 32.5%);
     grid-gap: 15px;
   }
@@ -52,6 +45,9 @@ export default {
 @media screen and (max-width: 1400px) {
   .products {
     width: 70%;
+    &__list {
+      grid-template-columns: repeat(3, 32.3%);
+    }
   }
 }
 
@@ -61,7 +57,6 @@ export default {
     &__list {
       grid-template-columns: repeat(2, 49%);
       justify-content: center;
-      // align-items: center;
       align-items: flex-end;
       grid-gap: 15px;
     }

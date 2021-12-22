@@ -1,19 +1,32 @@
 <template>
   <li class="products__item">
     <button class="products__item__btn_delete"></button>
-    <p class="products__item__name">Наименование товара</p>
-    <p class="products__item__description">{{p}}</p>
-    <span class="products__item__price">10 000 руб.</span>
+    <img class="products__item__img" :src="resolve(imgLink)" alt="">
+    <div class="products__item__main">
+      <p class="products__item__name">{{ name }}</p>
+      <p class="products__item__description">{{ description }}</p>
+      <span class="products__item__price">{{ price | currencyFilter }} руб.</span>
+    </div>
   </li>
 </template>
 
 <script>
+import currencyFilter from '../filters/currency.filter';
+
 export default {
   name: 'ProductItem',
+  props: ['name', 'description', 'price', 'imgLink', 'imgLocation'],
+  filters: {
+    currencyFilter,
+  },
   data() {
     return {
-      p: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
     };
+  },
+  methods: {
+    resolve(path) {
+      return this.imgLocation === 'locale' ? require.context('../assets/', false, /\.png$/)(`./${path}`) : path;
+    },
   },
 };
 </script>
@@ -24,17 +37,9 @@ export default {
   &__item {
     @include border-default;
     position: relative;
+    height: 100%;
     max-width: 332px;
-    padding: 195px 16px 24px;
-    background-image: url("../assets/product_image.png");
-    background-position: 50% 0%;
-    background-repeat: no-repeat;
     box-shadow: $box-shadow-huge;
-    cursor: pointer;
-
-    // &:hover {
-    //   box-shadow: 0px 40px 60px rgba(0, 0, 0, 0.1), 0px 12px 20px rgba(0, 0, 0, 0.1);
-    // }
 
     &:hover button {
       display: block;
@@ -59,7 +64,18 @@ export default {
     transform: scale(0.9);
     }
 
+    &__main {
+      // position: absolute;
+      padding: 0 12px 24px;
+    }
+
+    &__img {
+      width: 100%;
+      max-height: 200px;
+    }
+
     &__name {
+      margin: 10px 0 16px;
       margin-bottom: 16px;
       font-size: 20px;
       font-weight: 600;

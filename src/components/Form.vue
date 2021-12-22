@@ -1,22 +1,22 @@
 <template>
-  <form @submit.prevent="" action="" class="form">
+  <form @submit.prevent="addProduct" class="form">
     <label class="form__name" for="form__name_input">
       <span>Наименование товара</span>
     </label>
-    <input type="text" id="form__name_input" placeholder="Введите наименование товара">
+    <input type="text" id="form__name_input" placeholder="Введите наименование товара" v-model="name">
     <label class="form__description" for="form__description_input">
       Описание товара
     </label>
-    <textarea rows="10" id="form__description_input" placeholder="Введите описание товара">
+    <textarea rows="10" id="form__description_input" placeholder="Введите описание товара" v-model="description">
     </textarea>
     <label class="form__link" for="form__link_input">
       <span>Ссылка на изображение товара</span>
     </label>
-    <input type="text" id="form__link_input" placeholder="Введите ссылку">
+    <input type="text" id="form__link_input" placeholder="Введите ссылку" v-model="imgLink">
     <label class="form__price" for="form__price_input">
       <span>Цена товара</span>
     </label>
-    <input type="text" id="form__price_input" placeholder="Введите цену">
+    <input type="number" id="form__price_input" placeholder="Введите цену" v-model="price">
     <button class="form__btn_submit">Добавить товар</button>
   </form>
 </template>
@@ -24,6 +24,21 @@
 <script>
 export default {
   name: 'Form',
+  data() {
+    return {
+      name: '',
+      description: '',
+      imgLink: '',
+      price: null,
+    };
+  },
+  methods: {
+    addProduct() {
+      this.$store.commit('addProduct', {
+        name: this.name, description: this.description, imgLink: this.imgLink, price: this.price,
+      });
+    },
+  },
 };
 </script>
 
@@ -32,7 +47,6 @@ export default {
   @include border-default;
   position: sticky;
   top: 24px;
-  // width: 24%;
   width: 332px;
   height: 440px;
   padding: 24px;
@@ -95,6 +109,10 @@ export default {
 
   input::placeholder, textarea::placeholder {
     color: $text-color-gray;
+  }
+
+  input:focus, textarea:focus {
+    outline: none;
   }
 
   textarea {
