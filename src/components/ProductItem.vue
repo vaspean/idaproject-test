@@ -1,7 +1,9 @@
 <template>
   <li class="products__item">
     <button class="products__item__btn_delete"></button>
-    <img class="products__item__img" :src="resolve(imgLink)" alt="">
+    <div class="products__item__img">
+      <img :src="resolve(imgLink)" alt="">
+    </div>
     <div class="products__item__main">
       <p class="products__item__name">{{ name }}</p>
       <p class="products__item__description">{{ description }}</p>
@@ -66,12 +68,17 @@ export default {
 
     &__main {
       // position: absolute;
-      padding: 0 12px 24px;
+      padding: 0 12px 56px;
     }
 
     &__img {
       width: 100%;
-      max-height: 200px;
+      height: 205px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+      }
     }
 
     &__name {
@@ -87,6 +94,8 @@ export default {
     }
 
     &__price {
+      position: absolute;
+      bottom: 24px;
       font-size: 24px;
       font-weight: 600;
     }

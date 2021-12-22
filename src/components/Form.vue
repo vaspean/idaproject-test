@@ -3,7 +3,8 @@
     <label class="form__name" for="form__name_input">
       <span>Наименование товара</span>
     </label>
-    <input type="text" id="form__name_input" placeholder="Введите наименование товара" v-model="name">
+    <input :class="{ 'form__input_unvalidate' : validate.name && validation }" type="text" id="form__name_input" placeholder="Введите наименование товара" v-model="name">
+    <span v-show="validate.name && validation" class="form__span_unvalidate">Поле является обязательным</span>
     <label class="form__description" for="form__description_input">
       Описание товара
     </label>
@@ -12,12 +13,14 @@
     <label class="form__link" for="form__link_input">
       <span>Ссылка на изображение товара</span>
     </label>
-    <input type="text" id="form__link_input" placeholder="Введите ссылку" v-model="imgLink">
+    <input :class="{ 'form__input_unvalidate' : validate.imgLink && validation }" type="text" id="form__link_input" placeholder="Введите ссылку" v-model="imgLink">
+    <span v-show="validate.imgLink && validation" class="form__span_unvalidate">Поле является обязательным</span>
     <label class="form__price" for="form__price_input">
       <span>Цена товара</span>
     </label>
-    <input type="number" id="form__price_input" placeholder="Введите цену" v-model="price">
-    <button class="form__btn_submit">Добавить товар</button>
+    <input :class="{ 'form__input_unvalidate' :validate.price && validation }" type="number" id="form__price_input" placeholder="Введите цену" v-model="price">
+    <span v-show="validate.price && validation" class="form__span_unvalidate">Поле является обязательным</span>
+    <button :class="{ 'btn_disabled': (validate.name || validate.imgLink || validate.price) }" class="form__btn_submit">Добавить товар</button>
   </form>
 </template>
 
@@ -30,13 +33,30 @@ export default {
       description: '',
       imgLink: '',
       price: null,
+      validation: false,
     };
+  },
+  computed: {
+    validate() {
+      return {
+        name: !this.name,
+        imgLink: !this.imgLink,
+        price: !this.price,
+      };
+    },
   },
   methods: {
     addProduct() {
-      this.$store.commit('addProduct', {
-        name: this.name, description: this.description, imgLink: this.imgLink, price: this.price,
-      });
+      if (!(this.validate.name || this.validate.imgLink || this.validate.price)) {
+        this.validation = true;
+        this.$store.commit('addProduct', {
+          name: this.name, description: this.description, imgLink: this.imgLink, price: +this.price,
+        });
+        this.name = '';
+        this.description = '';
+        this.imgLink = '';
+        this.price = '';
+      }
     },
   },
 };
@@ -61,11 +81,25 @@ export default {
     color: $forms-text-color;
   }
 
-  .form__name span, .form__link span, .form__price span{
+  &__link, &__description, &__price, &__btn_submit {
+    margin-top: 16px !important;
+  }
+
+  &__name span, &__link span, &__price span {
     padding-right: 5px;
     background-image: url("../assets/red_dot.svg");
     background-repeat: no-repeat;
     background-position: 100% 0%;
+  }
+
+  &__span_unvalidate {
+    font-size: 8px;
+    line-height: 10px;
+    color: $main-color-red;
+  }
+
+  .form__input_unvalidate {
+    border: 2px solid $main-color-red;
   }
 
   #form__description_input {
@@ -75,7 +109,7 @@ export default {
   &__btn_submit {
     width: 100%;
     height: 36px;
-    margin-top: 10px;
+    margin-top: 6px;
     border: none;
     background-color: #7BAE73;
     color: white;
@@ -96,11 +130,15 @@ export default {
     color: $text-color-gray;
   }
 
+  input {
+    height: 36px
+  }
+
   input, textarea {
     @include border-default;
-    min-height: 36px;
+    // min-height: 36px;
     width: 100%;
-    margin-bottom: 16px;
+    // margin-bottom: 16px;
     padding: 0 16px;
     box-shadow: $box-shadow-tiny;
     font-size: 12px;
