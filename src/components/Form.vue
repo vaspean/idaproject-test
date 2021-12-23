@@ -76,7 +76,7 @@ export default {
       }
     },
     isLetterOrNumber(event) {
-      if (!+event.key && !event.key === '0') {
+      if (!+event.key && !(event.key === '0')) {
         event.preventDefault();
       }
       return false;
