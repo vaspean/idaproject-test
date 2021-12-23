@@ -1,6 +1,6 @@
 <template>
   <li class="products__item">
-    <button class="products__item__btn_delete"></button>
+    <button class="products__item__btn_delete" @click="deleteProduct(id)"></button>
     <div class="products__item__img">
       <img :src="imgPath" alt="Ссылка на изображение недействительна">
     </div>
@@ -17,7 +17,7 @@ import currencyFilter from '../filters/currency.filter';
 
 export default {
   name: 'ProductItem',
-  props: ['name', 'description', 'price', 'imgPath'],
+  props: ['id', 'name', 'description', 'price', 'imgPath'],
   filters: {
     currencyFilter,
   },
@@ -28,6 +28,9 @@ export default {
   methods: {
     replaceByDefault(e) {
       e.target.src = 'no_photo.png';
+    },
+    deleteProduct(id) {
+      this.$store.commit('deleteProduct', id);
     },
   },
 };

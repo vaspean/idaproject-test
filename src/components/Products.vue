@@ -2,8 +2,9 @@
   <div class="products">
     <ul class="products__list">
       <ProductItem
-        v-for="(product, index) in products"
-        :key="index"
+        v-for="product in products"
+        :key="product.id"
+        :id="product.id"
         :name="product.name"
         :description="product.description"
         :price="product.price"
@@ -25,6 +26,11 @@ export default {
   },
   components: {
     ProductItem,
+  },
+  watch: {
+    products() {
+      this.$store.commit('updateLocalStorage');
+    },
   },
 };
 </script>

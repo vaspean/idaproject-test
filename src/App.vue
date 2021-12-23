@@ -15,8 +15,13 @@ export default {
   name: 'App',
   data() {
     return {
-      p: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
+      products: JSON.parse(localStorage.getItem('products')) || this.$store.state.products,
     };
+  },
+  created() {
+    if (this.products !== this.$store.state.products) {
+      this.$store.commit('loadData', this.products);
+    }
   },
   components: {
     Header, Main,

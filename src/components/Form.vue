@@ -48,7 +48,6 @@ export default {
     },
     priceModel: {
       get() {
-        console.log(!this.price);
         return currencyFilter(this.price.toLocaleString());
       },
       set(value) {
@@ -60,8 +59,14 @@ export default {
     addProduct() {
       this.validation = true;
       if (!(this.validate.name || this.validate.imgLink || this.validate.price)) {
+        let newProductId = 1;
+        if (this.$store.state.products.length !== 0) {
+          newProductId = this.$store.state.products.reduce((accumulator, current) => (
+            accumulator.id > current.id ? accumulator : current
+          )).id + 1;
+        }
         this.$store.commit('addProduct', {
-          name: this.name, description: this.description, imgLink: this.imgLink, price: +this.price,
+          id: newProductId, name: this.name, description: this.description, imgLink: this.imgLink, price: +this.price,
         });
         this.name = '';
         this.description = '';
