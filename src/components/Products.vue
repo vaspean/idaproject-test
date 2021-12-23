@@ -2,7 +2,7 @@
   <div class="products">
     <ul class="products__list">
       <ProductItem
-        v-for="product in products"
+        v-for="product in filteredProducts"
         :key="product.id"
         :id="product.id"
         :name="product.name"
@@ -11,6 +11,7 @@
         :imgPath="product.imgPath"
       />
     </ul>
+    <p v-if="!filteredProducts.length" class="no_products_message">Товаров нет</p>
   </div>
 </template>
 
@@ -19,16 +20,34 @@ import ProductItem from '@/components/ProductItem.vue';
 
 export default {
   name: 'Products',
-  data() {
-    return {
-      products: this.$store.state.products,
-    };
+  computed: {
+    filteredProducts() {
+      let filteredProducts = this.$store.state.products.concat();
+      if (this.$store.state.filter === 'default') {
+        filteredProducts = this.$store.state.products;
+      } else if (this.$store.state.filter === 'min') {
+        filteredProducts.sort((a, b) => a.price - b.price);
+      } else if (this.$store.state.filter === 'max') {
+        filteredProducts.sort((a, b) => b.price - a.price);
+      } else if (this.$store.state.filter === 'name') {
+        filteredProducts.sort((a, b) => {
+          if (a.name < b.name) {
+            return -1;
+          }
+          if (a.name > b.name) {
+            return 1;
+          }
+          return 0;
+        });
+      }
+      return filteredProducts;
+    },
   },
   components: {
     ProductItem,
   },
   watch: {
-    products() {
+    '$store.state.products': function () {
       this.$store.commit('updateLocalStorage');
     },
   },
@@ -45,6 +64,13 @@ export default {
     grid-gap: 15px;
   }
 
+}
+
+.no_products_message {
+  margin: 0;
+  text-align: center;
+  font-size: 32px;
+  font-weight: 600;
 }
 
 @media screen and (max-width: 1400px) {

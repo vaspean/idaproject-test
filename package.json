@@ -40,7 +40,8 @@
     },
     "rules": {
       "linebreak-style": ["error", "unix"],
-      "max-len": ["error", { "code": 200 }]
+      "max-len": ["error", { "code": 200 }],
+      "func-names": "off"
     }
   },
   "browserslist": [

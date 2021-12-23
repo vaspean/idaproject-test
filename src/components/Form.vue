@@ -13,14 +13,14 @@
     <label class="form__link" for="form__link_input">
       <span>Ссылка на изображение товара</span>
     </label>
-    <input :class="{ 'form__input_unvalidate' : validate.imgLink && validation }" type="text" id="form__link_input" placeholder="Введите ссылку" v-model="imgLink">
-    <span v-show="validate.imgLink && validation" class="form__span_unvalidate">Поле является обязательным</span>
+    <input :class="{ 'form__input_unvalidate' : validate.imgPath && validation }" type="text" id="form__link_input" placeholder="Введите ссылку" v-model="imgPath">
+    <span v-show="validate.imgPath && validation" class="form__span_unvalidate">Поле является обязательным</span>
     <label class="form__price" for="form__price_input">
       <span>Цена товара</span>
     </label>
     <input :class="{ 'form__input_unvalidate' :validate.price && validation }" type="text" id="form__price_input" placeholder="Введите цену" v-model="priceModel" @keypress="isLetterOrNumber($event)">
     <span v-show="validate.price && validation" class="form__span_unvalidate">Поле является обязательным</span>
-    <button :class="{ 'btn_disabled': (validate.name || validate.imgLink || validate.price) }" class="form__btn_submit">Добавить товар</button>
+    <button :class="{ 'btn_disabled': (validate.name || validate.imgPath || validate.price) }" class="form__btn_submit">Добавить товар</button>
   </form>
 </template>
 
@@ -33,7 +33,7 @@ export default {
     return {
       name: '',
       description: '',
-      imgLink: '',
+      imgPath: '',
       price: 0,
       validation: false,
     };
@@ -42,7 +42,7 @@ export default {
     validate() {
       return {
         name: !this.name,
-        imgLink: !this.imgLink,
+        imgPath: !this.imgPath,
         price: !this.price,
       };
     },
@@ -58,7 +58,7 @@ export default {
   methods: {
     addProduct() {
       this.validation = true;
-      if (!(this.validate.name || this.validate.imgLink || this.validate.price)) {
+      if (!(this.validate.name || this.validate.imgPath || this.validate.price)) {
         let newProductId = 1;
         if (this.$store.state.products.length !== 0) {
           newProductId = this.$store.state.products.reduce((accumulator, current) => (
@@ -66,17 +66,17 @@ export default {
           )).id + 1;
         }
         this.$store.commit('addProduct', {
-          id: newProductId, name: this.name, description: this.description, imgLink: this.imgLink, price: +this.price,
+          id: newProductId, name: this.name, description: this.description, imgPath: this.imgPath, price: +this.price,
         });
         this.name = '';
         this.description = '';
-        this.imgLink = '';
+        this.imgPath = '';
         this.price = '';
         this.validation = false;
       }
     },
     isLetterOrNumber(event) {
-      if (!+event.key) {
+      if (!+event.key && !event.key === '0') {
         event.preventDefault();
       }
       return false;
@@ -159,9 +159,7 @@ export default {
 
   input, textarea {
     @include border-default;
-    // min-height: 36px;
     width: 100%;
-    // margin-bottom: 16px;
     padding: 0 16px;
     box-shadow: $box-shadow-tiny;
     font-size: 12px;
@@ -203,8 +201,4 @@ export default {
     margin-bottom: 20px;
   }
 }
-
-// @media screen and (max-width: 600px) {
-//   form { background-color: #fc0; }
-// }
 </style>

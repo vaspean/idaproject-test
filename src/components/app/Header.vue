@@ -1,15 +1,29 @@
 <template>
   <header>
     <h1>Добавление товара</h1>
-    <button class="select">
+    <select v-model="filter" class="select">
+      <option value="default">По умолчанию</option>
+      <option value="min">По цене min</option>
+      <option value="max">По цене max</option>
+      <option value="name">По названию</option>
       По умолчанию
-    </button>
+    </select>
   </header>
 </template>
 
 <script>
 export default {
   name: 'Header',
+  computed: {
+    filter: {
+      get() {
+        return this.$store.state.filter;
+      },
+      set(value) {
+        this.$store.commit('changeFilter', value);
+      },
+    },
+  },
 };
 </script>
 
@@ -34,9 +48,12 @@ h1 {
   padding: 0 28px 0 15px;
   background-image: url("../../assets/select_arrow.svg");
   background-repeat: no-repeat;
-  background-position: 87% 50%;
+  background-position: 87% 57%;
   box-shadow: $box-shadow-tiny;
   font-size: 12px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   cursor: pointer;
 }
 

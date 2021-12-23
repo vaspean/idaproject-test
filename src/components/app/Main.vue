@@ -11,11 +11,6 @@ import Products from '@/components/Products.vue';
 
 export default {
   name: 'Main',
-  data() {
-    return {
-      p: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
-    };
-  },
   components: {
     Form, Products,
   },

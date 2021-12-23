@@ -70,7 +70,6 @@ export default {
     }
 
     &__main {
-      // position: absolute;
       padding: 0 12px 56px;
     }
 
