@@ -2,7 +2,7 @@
   <li class="products__item">
     <button class="products__item__btn_delete"></button>
     <div class="products__item__img">
-      <img :src="resolve(imgLink)" alt="">
+      <img :src="imgPath" alt="Ссылка на изображение недействительна">
     </div>
     <div class="products__item__main">
       <p class="products__item__name">{{ name }}</p>
@@ -17,7 +17,7 @@ import currencyFilter from '../filters/currency.filter';
 
 export default {
   name: 'ProductItem',
-  props: ['name', 'description', 'price', 'imgLink', 'imgLocation'],
+  props: ['name', 'description', 'price', 'imgPath'],
   filters: {
     currencyFilter,
   },
@@ -26,8 +26,8 @@ export default {
     };
   },
   methods: {
-    resolve(path) {
-      return this.imgLocation === 'locale' ? require.context('../assets/', false, /\.png$/)(`./${path}`) : path;
+    replaceByDefault(e) {
+      e.target.src = 'no_photo.png';
     },
   },
 };

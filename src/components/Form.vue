@@ -18,13 +18,15 @@
     <label class="form__price" for="form__price_input">
       <span>Цена товара</span>
     </label>
-    <input :class="{ 'form__input_unvalidate' :validate.price && validation }" type="number" id="form__price_input" placeholder="Введите цену" v-model="price">
+    <input :class="{ 'form__input_unvalidate' :validate.price && validation }" type="text" id="form__price_input" placeholder="Введите цену" v-model="priceModel" @keypress="isLetterOrNumber($event)">
     <span v-show="validate.price && validation" class="form__span_unvalidate">Поле является обязательным</span>
     <button :class="{ 'btn_disabled': (validate.name || validate.imgLink || validate.price) }" class="form__btn_submit">Добавить товар</button>
   </form>
 </template>
 
 <script>
+import currencyFilter from '../filters/currency.filter';
+
 export default {
   name: 'Form',
   data() {
@@ -32,7 +34,7 @@ export default {
       name: '',
       description: '',
       imgLink: '',
-      price: null,
+      price: 0,
       validation: false,
     };
   },
@@ -44,11 +46,20 @@ export default {
         price: !this.price,
       };
     },
+    priceModel: {
+      get() {
+        console.log(!this.price);
+        return currencyFilter(this.price.toLocaleString());
+      },
+      set(value) {
+        this.price = +value.replace(/[^0-9]/g, '');
+      },
+    },
   },
   methods: {
     addProduct() {
+      this.validation = true;
       if (!(this.validate.name || this.validate.imgLink || this.validate.price)) {
-        this.validation = true;
         this.$store.commit('addProduct', {
           name: this.name, description: this.description, imgLink: this.imgLink, price: +this.price,
         });
@@ -56,7 +67,14 @@ export default {
         this.description = '';
         this.imgLink = '';
         this.price = '';
+        this.validation = false;
       }
+    },
+    isLetterOrNumber(event) {
+      if (!+event.key) {
+        event.preventDefault();
+      }
+      return false;
     },
   },
 };

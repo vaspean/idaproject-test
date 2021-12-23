@@ -7,8 +7,7 @@
         :name="product.name"
         :description="product.description"
         :price="product.price"
-        :imgLink="product.imgLink"
-        :imgLocation="product.imgLocation"
+        :imgPath="product.imgPath"
       />
     </ul>
   </div>
