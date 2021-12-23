@@ -65,6 +65,10 @@ export default {
       cursor: pointer;
     }
 
+    &__btn_delete:hover {
+      opacity: 0.8;
+    }
+
     &__btn_delete:active {
     transform: scale(0.9);
     }
